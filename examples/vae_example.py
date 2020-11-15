@@ -32,8 +32,12 @@ if __name__ == "__main__":
                       n_features=n_features,
                       contamination=contamination,
                       random_state=42)
+########  Start here (Be sure to have already split the data ######
+####### into X_train, y_train, X_test, y_test #####################
 
     # train VAE detector (Beta-VAE)
+# Instantiate a VAE and train it on X_train. You can find all param defs in 
+# https://pyod.readthedocs.io/en/latest/pyod.models.html?highlight=vae#module-pyod.models.vae
     clf_name = 'VAE'
     clf = VAE(epochs=30, contamination=contamination, gamma=0.8, capacity=0.2)
     clf.fit(X_train)
