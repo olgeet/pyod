@@ -20,6 +20,7 @@ from pyod.utils.data import generate_data
 from pyod.utils.data import evaluate_print
 
 if __name__ == "__main__":
+###### Don't need to simulate data since we already have our data, so ignore this
     contamination = 0.1  # percentage of outliers
     n_train = 20000  # number of training points
     n_test = 2000  # number of testing points
@@ -32,11 +33,17 @@ if __name__ == "__main__":
                       n_features=n_features,
                       contamination=contamination,
                       random_state=42)
-
-    # train AutoEncoder detector
+###### Up until here
+###### Note that your data needs to be split up into X_train, y_train, X_test, y_test
+# Initialize the autoencoder model and then train it. From the documentation:
+#    contamination : float in (0., 0.5), optional (default=0.1)
+#        The amount of contamination of the data set, i.e.
+#        the proportion of outliers in the data set. When fitting this is used
+#        to define the threshold on the decision function.
     clf_name = 'AutoEncoder'
     clf = AutoEncoder(epochs=30, contamination=contamination)
     clf.fit(X_train)
+#
 
     # get the prediction labels and outlier scores of the training data
     y_train_pred = clf.labels_  # binary labels (0: inliers, 1: outliers)
